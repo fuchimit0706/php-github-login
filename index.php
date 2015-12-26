@@ -1,5 +1,6 @@
+<?php require_once '_config.php'; ?>
 <html>
-<?php include '_head.php';?>
+<?php require_once '_head.php'; ?>
 <body>
 
 <h1><?=$title?></h1>
