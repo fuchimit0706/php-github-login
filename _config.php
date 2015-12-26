@@ -1,7 +1,6 @@
 <?php
 require_once './vendor/autoload.php';
 session_start();
-
 $github_keys = require('./github-app-keys.php');
 $provider = new League\OAuth2\Client\Provider\Github([
     'clientId'          => $github_keys['clientId'],

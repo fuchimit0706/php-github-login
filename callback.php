@@ -1,12 +1,13 @@
 <?php
 require_once '_config.php';
 
-// Check given state against previously stored one to mitigate CSRF attack
+// ちゃんとlogin.phpからきたかどうか確認
 if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
     unset($_SESSION['oauth2state']);
     exit('Invalid state');
 }
 
+// 認証コードからアクセストークンを取得
 $token = $provider->getAccessToken('authorization_code', [
     'code' => $_GET['code']
 ]);
@@ -14,6 +15,7 @@ $token = $provider->getAccessToken('authorization_code', [
 echo $token.'\n';
 echo 'Successfully callbacked!!'.'\n';
 
+// トークン使って認可した情報を取得できる
 $user = $provider->getResourceOwner($token);
 
 echo '<pre>';
